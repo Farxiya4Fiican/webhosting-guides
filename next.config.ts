@@ -1,19 +1,17 @@
+
 import type { NextConfig } from "next";
 
+const isGitHubPages = process.env.GITHUB_PAGES === "true";
+
 const nextConfig: NextConfig = {
-  /* config options here */
-  experimental: {
-    agentFeedback: true,
-  },
-  cacheComponents: true,
-  partialPrefetching: true,
-  turbopack: {
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
+  output: "export",
+  trailingSlash: true,
+
+  // GitHub Pages project repository path
+  basePath: isGitHubPages ? "/webhosting-guides" : "",
+
+  images: {
+    unoptimized: true,
   },
 };
 
